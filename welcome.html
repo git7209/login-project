@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>환영합니다</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #FBFBFB;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .left-panel {
+      width: 25%;
+      background-color: #E8F9FF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .left-panel img {
+      max-width: 70%;
+      height: auto;
+    }
+
+    .center-panel {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #C5BAFF;
+      position: relative;
+    }
+
+    .welcome-box {
+      background-color: #FBFBFB;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 320px;
+      z-index: 2;
+    }
+
+    .welcome-box h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .welcome-box button {
+      width: 100%;
+      padding: 12px;
+      background-color: #C4D9FF;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .right-panel {
+      width: 25%;
+      background-color: #C4D9FF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .right-panel img {
+      width: 90%;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="left-panel">
+    <img src="https://i.namu.wiki/i/7C3XS2ApQbw6Vfik9IWym8MjKooo3HPJzw4Dlc8HLitaWXx-D13WaoFiiXyAsigxAv4IxHhcHioxCPtocTtyKQ.webp" alt="로고" />
+  </div>
+
+  <div class="center-panel">
+    <div class="welcome-box">
+      <h2 id="welcomeMessage">환영합니다!</h2>
+      <button onclick="logout()">메모장</button>
+    </div>
+  </div>
+
+  <div class="right-panel">
+    <img src="https://i.pinimg.com/originals/55/5e/c8/555ec882db26f15fb4c404921f4d5e34.gif" loop=infinite/ alt="스누피" />
+  </div>
+
+  <script>
+    const username = localStorage.getItem('savedUsername');
+
+    if (!username) {
+      alert("로그인이 필요합니다.");
+      window.location.href = 'login.html';
+    } else {
+      document.getElementById('welcomeMessage').innerText = `${username}님, 환영합니다!`;
+    }
+
+    function logout() {
+      localStorage.removeItem('savedUsername');
+      alert("메모장으로 이동하기.");
+      window.location.href = 'memo.html';
+    }
+
+    const gifList = ["https://i.namu.wiki/i/QY9U3_NQZgF4km1cXjsg4p3KfABopBIJD-PZPhtAfgh4TW4vX4HF72ZBM-a7TYcu7mMZCscyJO2YE3fsS_OdOA.gif", "https://i.pinimg.com/originals/55/5e/c8/555ec882db26f15fb4c404921f4d5e34.gif", "https://i.namu.wiki/i/tsU1A2Gn0cbGFUeUX6K6vllDPBNnuq5r_l6Afc9wCumU5D6PdZ_aEXhHf2kt2JJSxa9pf25f-ZFGs0F1XBCg6g.gif"];
+    let gifIndex = 0;
+
+    setInterval(() => {
+      gifIndex = (gifIndex + 1) % gifList.length;
+      document.getElementById("signupGif").src = gifList[gifIndex];
+    }, 5000);
+  </script>
+
+</body>
+</html>
